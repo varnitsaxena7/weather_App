@@ -1,4 +1,4 @@
-# Weather360
+# Weather360 ☀️⛈️🌤️
 
 Welcome to Weather360, a dynamic weather application built with React and Vite, providing real-time weather updates from the WeatherAPI.
 
