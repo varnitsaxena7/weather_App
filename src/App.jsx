@@ -18,6 +18,11 @@ const AppContainer = styled.div`
   background: #282c34;
   color: white;
   font-family: 'Arial', sans-serif;
+
+  @media (max-width: 768px) {
+    height: auto;
+    padding: 20px;
+  }
 `;
 
 const WeatherDisplay = styled.div`
@@ -25,6 +30,10 @@ const WeatherDisplay = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
 `;
 
 const FlexContainer = styled.div`
@@ -35,6 +44,12 @@ const FlexContainer = styled.div`
   width: 100%;
   max-width: 1200px;
   margin-top: 40px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
 `;
 
 const LeftColumn = styled.div`
@@ -42,6 +57,10 @@ const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const RightColumn = styled.div`
@@ -49,6 +68,25 @@ const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 20px;
+  }
+`;
+
+const HighlightsContainer = styled.div`
+  width: 100%;
+  max-width: 800px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 12px;
+  }
 `;
 
 function App() {
