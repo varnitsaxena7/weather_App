@@ -93,8 +93,6 @@ function App() {
   const [city, setCity] = useState("New Delhi");
   const [weatherData, setWeatherData] = useState(null);
   const [airQualityData, setAirQualityData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   useEffect(() => {
     const apiUrl = `https://api.weatherapi.com/v1/current.json?key=b9c09a397ef041c0ab555715240205&q=${city}&aqi=no`;
 
@@ -116,8 +114,6 @@ function App() {
 
   useEffect(() => {
     const fetchAirQualityData = async () => {
-      setLoading(true);
-      setError(null);
       setAirQualityData(null);
       try {
         const response = await fetch(`https://api.waqi.info/feed/${city}/?token=62a5a6baa4dedbc43a32ccd472ee1401433f7797`);
@@ -129,8 +125,6 @@ function App() {
         }
       } catch (error) {
         setError('Failed to fetch data');
-      } finally {
-        setLoading(false);
       }
     };
 
