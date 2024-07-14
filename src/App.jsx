@@ -92,7 +92,9 @@ const HighlightsContainer = styled.div`
 function App() {
   const [city, setCity] = useState("New Delhi");
   const [weatherData, setWeatherData] = useState(null);
-
+  const [airQualityData, setAirQualityData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   useEffect(() => {
     const apiUrl = `https://api.weatherapi.com/v1/current.json?key=b9c09a397ef041c0ab555715240205&q=${city}&aqi=no`;
 
@@ -111,6 +113,31 @@ function App() {
         console.log(e);
       });
   }, [city]);
+
+  useEffect(() => {
+    const fetchAirQualityData = async () => {
+      setLoading(true);
+      setError(null);
+      setAirQualityData(null);
+      try {
+        const response = await fetch(`https://api.waqi.info/feed/${city}/?token=62a5a6baa4dedbc43a32ccd472ee1401433f7797`);
+        const result = await response.json();
+        if (result.status === "ok") {
+          setAirQualityData(result.data);
+        } else {
+          setError('Failed to fetch data');
+        }
+      } catch (error) {
+        setError('Failed to fetch data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAirQualityData();
+  }, [city]);
+
+
 
   const getAnimationData = () => {
     if (!weatherData) return null;
@@ -148,10 +175,10 @@ function App() {
           </div>
         </LeftColumn>
         <RightColumn>
-          <div className="w-full max-w-lg p-6 bg-white bg-opacity-10 rounded-lg shadow-lg">
+          <div className="w-full max-w-lg p-2 bg-white bg-opacity-10 rounded-lg shadow-lg">
             <h1 className="text-3xl font-bold mb-4 text-center">Today's Highlights</h1>
-            {weatherData && (
-              <div className="grid grid-cols-2 gap-4">
+            {weatherData &&airQualityData&& (
+              <div className="grid grid-cols-3 gap-4">
                 <Highlights
                   stats={{
                     title: "Wind Status",
@@ -193,6 +220,27 @@ function App() {
                     title: "Cloud Cover",
                     value: weatherData.current.cloud,
                     unit: "%",
+                  }}
+                />
+                <Highlights
+                  stats={{
+                    title: "AQI",
+                    value: airQualityData.aqi,
+                    unit: "",
+                  }}
+                />
+                <Highlights
+                  stats={{
+                    title: "Pollutant(Main)",
+                    value: airQualityData.dominentpol,
+                    unit: "",
+                  }}
+                />
+                <Highlights
+                  stats={{
+                    title: `${airQualityData.dominentpol} value`,
+                    value: airQualityData.iaqi[airQualityData.dominentpol.toLowerCase()].v,
+                    unit: "µg/m³",
                   }}
                 />
               </div>
