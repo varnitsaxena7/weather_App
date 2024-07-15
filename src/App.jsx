@@ -77,7 +77,7 @@ const RightColumn = styled.div`
 
 const HighlightsContainer = styled.div`
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   padding: 16px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
