@@ -77,7 +77,7 @@ const RightColumn = styled.div`
 
 const HighlightsContainer = styled.div`
   width: 100%;
-  max-width: 1000px;
+  max-width: 800px;
   padding: 16px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -85,6 +85,7 @@ const HighlightsContainer = styled.div`
 
   @media (max-width: 768px) {
     max-width: 100%;
+    padding: 12px;
   }
 `;
 
@@ -168,7 +169,7 @@ function App() {
           </div>
         </LeftColumn>
         <RightColumn>
-          <div className="w-full max-w-lg p-2 bg-white bg-opacity-10 rounded-lg shadow-lg">
+          <div className="w-full max-w-lg p-4 bg-white bg-opacity-10 rounded-lg shadow-lg">
             <h1 className="text-3xl font-bold mb-4 text-center">Today's Highlights</h1>
             {weatherData &&airQualityData&& (
               <div className="grid grid-cols-2 gap-4">
@@ -234,6 +235,13 @@ function App() {
                     title: `${airQualityData.dominentpol} value`,
                     value: airQualityData.iaqi[airQualityData.dominentpol.toLowerCase()].v,
                     unit: "µg/m³",
+                  }}
+                />
+                <Highlights
+                  stats={{
+                    title: `Dew`,
+                    value: airQualityData.iaqi.dew.v,
+                    unit: "°C",
                   }}
                 />
               </div>
