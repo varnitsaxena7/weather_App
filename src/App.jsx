@@ -85,7 +85,7 @@ const HighlightsContainer = styled.div`
 
   @media (max-width: 768px) {
     max-width: 100%;
-    padding: 12px;
+    padding: 2px;
   }
 `;
 
