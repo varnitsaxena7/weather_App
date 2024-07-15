@@ -239,8 +239,8 @@ function App() {
                 />
                 <Highlights
                   stats={{
-                    title: `Dew`,
-                    value: airQualityData.iaqi.dew.v,
+                    title: `Feels Like`,
+                    value: weatherData.current.feelslike_c,
                     unit: "°C",
                   }}
                 />
