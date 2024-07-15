@@ -171,7 +171,7 @@ function App() {
           <div className="w-full max-w-lg p-2 bg-white bg-opacity-10 rounded-lg shadow-lg">
             <h1 className="text-3xl font-bold mb-4 text-center">Today's Highlights</h1>
             {weatherData &&airQualityData&& (
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 <Highlights
                   stats={{
                     title: "Wind Status",
