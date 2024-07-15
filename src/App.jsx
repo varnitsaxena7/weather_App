@@ -88,11 +88,42 @@ const HighlightsContainer = styled.div`
     padding: 12px;
   }
 `;
+const StyledButton = styled.a`
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  margin-top: 100px;
+  background: #282c34;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px 16px;
+    font-size: 14px;
+    margin-top: 50px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 6px 12px;
+    font-size: 12px;
+    margin-top: 25px;
+  }
+`;
+
 
 function App() {
   const [city, setCity] = useState("New Delhi");
   const [weatherData, setWeatherData] = useState(null);
   const [airQualityData, setAirQualityData] = useState(null);
+
   useEffect(() => {
     const apiUrl = `https://api.weatherapi.com/v1/current.json?key=b9c09a397ef041c0ab555715240205&q=${city}&aqi=no`;
 
@@ -131,8 +162,6 @@ function App() {
     fetchAirQualityData();
   }, [city]);
 
-
-
   const getAnimationData = () => {
     if (!weatherData) return null;
     const condition = weatherData.current.condition.text.toLowerCase();
@@ -167,11 +196,12 @@ function App() {
             )}
             {weatherData && <LottieAnimation animationData={getAnimationData()} width={300} height={300} />}
           </div>
+          <StyledButton href="https://pollen-2v1o.onrender.com/" target="_blank" rel="noopener noreferrer">View Pollen Data</StyledButton>
         </LeftColumn>
         <RightColumn>
           <div className="w-full max-w-lg p-4 bg-white bg-opacity-10 rounded-lg shadow-lg">
             <h1 className="text-3xl font-bold mb-4 text-center">Today's Highlights</h1>
-            {weatherData &&airQualityData&& (
+            {weatherData && airQualityData && (
               <div className="grid grid-cols-2 gap-4">
                 <Highlights
                   stats={{
