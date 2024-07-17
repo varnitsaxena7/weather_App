@@ -8,6 +8,9 @@ import styled from "styled-components";
 import sunnyAnimation from "./animations/sunny.json";
 import rainAnimation from "./animations/rain.json";
 import cloudyAnimation from "./animations/cloudy.json";
+import nightClearAnimation from "./animations/night_clear.json";
+import nightCloudyAnimation from "./animations/night_cloudy.json";
+import nightRainyAnimation from "./animations/night_rainy.json";
 
 const AppContainer = styled.div`
   display: flex;
@@ -88,6 +91,7 @@ const HighlightsContainer = styled.div`
     padding: 12px;
   }
 `;
+
 const StyledButton = styled.a`
   display: inline-block;
   padding: 10px 20px;
@@ -117,7 +121,6 @@ const StyledButton = styled.a`
     margin-top: 25px;
   }
 `;
-
 
 function App() {
   const [city, setCity] = useState("New Delhi");
@@ -165,15 +168,28 @@ function App() {
   const getAnimationData = () => {
     if (!weatherData) return null;
     const condition = weatherData.current.condition.text.toLowerCase();
+    const isDay = weatherData.current.is_day;
 
-    if (condition.includes("sunny")) {
-      return sunnyAnimation;
-    } else if (condition.includes("rain")) {
-      return rainAnimation;
-    } else if (condition.includes("cloud")) {
-      return cloudyAnimation;
+    if (isDay) {
+      if (condition.includes("sunny")) {
+        return sunnyAnimation;
+      } else if (condition.includes("rain")) {
+        return rainAnimation;
+      } else if (condition.includes("cloud")) {
+        return cloudyAnimation;
+      } else {
+        return sunnyAnimation; // default day animation
+      }
     } else {
-      return sunnyAnimation; // default animation
+      if (condition.includes("clear")) {
+        return nightClearAnimation;
+      } else if (condition.includes("rain")) {
+        return nightRainyAnimation;
+      } else if (condition.includes("cloud")) {
+        return nightCloudyAnimation;
+      } else {
+        return nightClearAnimation; // default night animation
+      }
     }
   };
 
