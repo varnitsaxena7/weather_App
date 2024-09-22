@@ -212,7 +212,6 @@ function App() {
             )}
             {weatherData && <LottieAnimation animationData={getAnimationData()} width={300} height={300} />}
           </div>
-          <StyledButton href="https://pollen-2v1o.onrender.com/" target="_blank" rel="noopener noreferrer">View Pollen Data</StyledButton>
         </LeftColumn>
         <RightColumn>
           <div className="w-full max-w-lg p-4 bg-white bg-opacity-10 rounded-lg shadow-lg">
